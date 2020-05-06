@@ -8,11 +8,11 @@ fun main(args: Array<String>) {
 
     val jasypt = StandardPBEStringEncryptor()
 
-    jasypt.setPassword("")
+    jasypt.setPassword("jkpark1234")
 
     jasypt.setAlgorithm("PBEWithMD5AndDES")
 
-    val encryptedText = jasypt.encrypt("")
+    val encryptedText = jasypt.encrypt("1234")
 
     val plainText = jasypt.decrypt(encryptedText)
 
