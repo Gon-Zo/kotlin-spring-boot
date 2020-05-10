@@ -1,16 +1,13 @@
 package com.gonzo.api.domain.post
 
+import com.gonzo.api.domain.BaseEntity
 import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
 @Table
 @NoArgsConstructor
-class Post {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var seq : Long = 0L
+class Post : BaseEntity {
 
     @Column(name = "title")
     var title : String ?= null

@@ -1,5 +1,6 @@
 package com.gonzo.api.service.post
 
+import com.gonzo.api.domain.BaseEntity
 import com.gonzo.api.domain.post.Post
 import com.gonzo.api.domain.post.PostRepository
 import com.gonzo.api.web.dto.PostDto
