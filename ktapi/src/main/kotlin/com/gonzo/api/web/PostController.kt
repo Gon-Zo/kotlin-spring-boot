@@ -14,10 +14,19 @@ class PostController (val postService: PostService){
        return postService.getPost();
     }
 
-
     @PostMapping("")
     fun makePost(@RequestBody dto : PostDto){
         postService.creatPost(dto)
+    }
+
+    @PutMapping("/{seq}")
+    fun updatePost(@PathVariable seq: Long, @RequestBody dto: PostDto) {
+        postService.updateByPost(seq, dto) ;
+    }
+
+    @DeleteMapping("/{seq}")
+    fun removePost(@PathVariable seq : Long) {
+        postService.deleteById(seq);
     }
 
 }
