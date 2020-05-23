@@ -11,4 +11,10 @@ class PostSupport ( val jpaQueryFactory: JPAQueryFactory , val entityManager: En
 //       jpaQueryFactory.update()
     }
 
+
+    fun findByPage(){
+//        jpaQueryFactory.selectFrom(QPost)
+    }
+
+
 }

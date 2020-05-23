@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/post")
 @RestController
+@CrossOrigin
 class PostController (val postService: PostService){
 
     @GetMapping("")
