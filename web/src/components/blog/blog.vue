@@ -1,17 +1,35 @@
 <template>
   <div>
-    <AppTable/>
+    <div>
+      <span>Blog</span>
+    </div>
+    <div>
+      <AppScrollTable :scrollData="postData"/>
+    </div>
   </div>
 </template>
 
 <script>
+
   import AppTable from "../table/AppTable";
+  import {createNamespacedHelpers} from 'vuex'
+  import AppScrollTable from '../table/AppScrollTable'
+
+  const {mapActions, mapGetters, mapMutations, mapState} = createNamespacedHelpers('blog')
+
   export default {
     name: "blog",
-    components: {AppTable}
+    components: {AppScrollTable, AppTable},
+    computed : {
+      ...mapState({
+        postData : state => state.postData
+      })
+    },
+    created () {
+     this.getPostData();
+    },
+    methods :{
+      ...mapActions(['getPostData'])
+    },
   }
 </script>
-
-<style scoped>
-
-</style>

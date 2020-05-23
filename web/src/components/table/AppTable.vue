@@ -74,12 +74,14 @@
       }
     },
     computed: mapState({
+
       headerData(state, getters) {
         return getters[`table/headerData`];
       },
       tableData(state, getters) {
         return getters[`table/tableData`];
       },
+
       inputVal() {
         return this.headerData.map(it=>it.inputVal)
       },

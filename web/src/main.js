@@ -5,10 +5,31 @@ import App from './App'
 import router from './router'
 import store from "./js/store";
 
-// import Vuex from "vuex";
-// Vue.use(Vuex)
+import axios from "axios";
 
 Vue.config.productionTip = false
+
+axios.defaults.baseURL = 'http://localhost:8081'
+
+axios.defaults.timeout = 10000
+
+axios.interceptors.request.use(request => {
+  console.log('request', request);
+  return request;
+}, error => {
+  console.log(error);
+  return Promise.reject(error);
+});
+
+axios.interceptors.response.use(response => {
+  console.log('response', response);
+  return response;
+}, error => {
+  console.log(error)
+  return Promise.reject(error);
+});
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

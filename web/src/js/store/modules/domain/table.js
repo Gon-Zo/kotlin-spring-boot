@@ -15,7 +15,7 @@ const getters ={
 };
 const mutations ={
 
- buildTableData : (state , data)=>{
+ buildTableData: (state , data)=>{
    state.tableData = data.data
  },
 
@@ -48,14 +48,11 @@ const actions ={
       return `${m.key}:${m.inputVal}:${m.inputType}`
     }).toString();
 
-    console.log("search >> " , searchVal);
-
     axios.get("http://localhost:3030/api/admin/user")
       .then((res)=> context.commit('buildTableData' , res.data))
       .catch(err=>console.log(err))
 
   },
-
 
   createData: (context) => {
 
@@ -81,4 +78,4 @@ export default {
   getters,
   mutations,
   actions,
-}
+  }
