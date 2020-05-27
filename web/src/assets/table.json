@@ -7,31 +7,69 @@
     "order": 1
   },
   {
-    "key": "id",
-    "name": "아이디",
+    "key": "title",
+    "name": "제목",
     "isUse": true,
     "isShow": true,
     "order": 2
   },
   {
-    "key": "pwd",
-    "name": "비밀번호",
+    "key": "content",
+    "name": "내용",
     "isUse": true,
     "isShow": true,
     "order": 3
   },
   {
-    "key": "name",
-    "name": "이름",
+    "key": "createdAt",
+    "name": "생성일",
     "isUse": true,
     "isShow": true,
     "order": 4
   },
   {
-    "key": "address",
-    "name": "주소",
+    "key": "updatedAt",
+    "name": "최신날짜",
     "isUse": true,
     "isShow": false,
     "order": 5
+  },
+
+
+  {
+    "key": "seq",
+    "name": "번호",
+    "isUse": true,
+    "isShow": true,
+    "order": 6
+  },
+  {
+    "key": "title",
+    "name": "제목",
+    "isUse": true,
+    "isShow": true,
+    "order": 7
+  },
+  {
+    "key": "content",
+    "name": "내용",
+    "isUse": true,
+    "isShow": true,
+    "order": 8
+  },
+  {
+    "key": "createdAt",
+    "name": "생성일",
+    "isUse": true,
+    "isShow": true,
+    "order": 9
+  },
+  {
+    "key": "updatedAt",
+    "name": "최신날짜",
+    "isUse": true,
+    "isShow": false,
+    "order": 10
   }
+
 ]

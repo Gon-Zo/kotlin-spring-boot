@@ -8,17 +8,21 @@
       <span>{{title}}</span>
     </p>
     <AppButton :storeName="namespace"/>
+
+    <AppTable/>
+
   </div>
 </template>
 
 <script>
   import {createNamespacedHelpers} from 'vuex'
   import AppButton from "../AppButton";
+  import AppTable from '../table/AppTable'
   const {mapState, mapGetters, mapMutations, mapActions} = createNamespacedHelpers(['user'])
 
   export default {
     name: "user",
-    components: {AppButton},
+    components: {AppTable, AppButton},
     data() {
       return {
         namespace : 'user'

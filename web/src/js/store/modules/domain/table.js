@@ -15,9 +15,13 @@ const getters ={
 };
 const mutations ={
 
- buildTableData: (state , data)=>{
-   state.tableData = data.data
+ buildTableData: (state , payload)=>{
+   state.tableData = payload
  },
+
+  setHeaderData: (state, data) => {
+    state.headerData = data
+  },
 
  setIsOpen : (state , payload)=>{
    state.headerData[payload].isOpen = !state.headerData[payload].isOpen;
@@ -29,6 +33,7 @@ const mutations ={
   }
 
 };
+
 const actions ={
 
   getTableData : (context , params) =>{
@@ -48,9 +53,14 @@ const actions ={
       return `${m.key}:${m.inputVal}:${m.inputType}`
     }).toString();
 
-    axios.get("http://localhost:3030/api/admin/user")
-      .then((res)=> context.commit('buildTableData' , res.data))
-      .catch(err=>console.log(err))
+    // axios.get("http://localhost:3030/api/admin/user")
+    //   .then((res)=> context.commit('buildTableData' , res.data))
+    //   .catch(err=>console.log(err))
+
+    axios.get(`/post`)
+      .then(res => context.commit('buildTableData', res.data))
+      .catch( err => console.log(err))
+
 
   },
 
