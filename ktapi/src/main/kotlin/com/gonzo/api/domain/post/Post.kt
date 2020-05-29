@@ -1,12 +1,14 @@
 package com.gonzo.api.domain.post
 
 import com.gonzo.api.domain.BaseEntity
+import com.querydsl.core.annotations.QueryEntities
 import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
-@Table
+@Table(name="POST")
 @NoArgsConstructor
+//@QueryEntities()
 class Post : BaseEntity {
 
     @Column(name = "title")
