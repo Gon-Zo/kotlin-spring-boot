@@ -8,8 +8,11 @@ plugins {
     kotlin("plugin.jpa") version "1.3.72"
 }
 
+apply plugin: 'idea'
+
 group = "com.gonzo"
 version = "0.0.1-SNAPSHOT"
+
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
