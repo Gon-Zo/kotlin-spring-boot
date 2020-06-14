@@ -6,6 +6,8 @@ plugins {
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.spring") version "1.3.72"
     kotlin("plugin.jpa") version "1.3.72"
+
+    idea
 }
 
 group = "com.gonzo"
@@ -54,3 +56,4 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
