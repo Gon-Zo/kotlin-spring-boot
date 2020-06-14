@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-3-34-48-181.ap-northeast-2.compute.amazonaws.com:2345/kt_dev
+    hikari:
+      username: ENC(YZNdt6MZddlwgUIo2WwLAYOhKaViEAvi)
+      password: ENC(DzdOoSVsevuVYC+09c++2A==)
+      maximum-pool-size: 10
+
+
