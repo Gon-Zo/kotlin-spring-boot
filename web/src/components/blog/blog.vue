@@ -4,8 +4,13 @@
       <span>Blog</span>
     </div>
     <div>
-      <AppScrollTable :scrollData="postData"/>
+      <button  @click="onCLick">
+        test
+      </button>
     </div>
+<!--    <div>-->
+<!--      <AppScrollTable :scrollData="postData"/>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -14,6 +19,7 @@
   import AppTable from "../table/AppTable";
   import {createNamespacedHelpers} from 'vuex'
   import AppScrollTable from '../table/AppScrollTable'
+  import axios from 'axios';
 
   const {mapActions, mapGetters, mapMutations, mapState} = createNamespacedHelpers('blog')
 
@@ -29,7 +35,17 @@
      this.getPostData();
     },
     methods :{
-      ...mapActions(['getPostData'])
+      ...mapActions(['getPostData']) ,
+
+      onCLick (){
+        const param = {
+          email: "test@naver.com",
+          password: 1234
+        }
+       axios.post('https://localhost:8080/test/login', param)
+        .then(res => console.log(res.status)).catch(err => console.log(err))
+      }
+
     },
   }
 </script>

@@ -9,7 +9,7 @@ import axios from "axios";
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'http://localhost:8081'
+axios.defaults.baseURL = 'https://localhost:8080'
 
 axios.defaults.timeout = 10000
 
