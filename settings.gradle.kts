@@ -1,3 +1,3 @@
 rootProject.name = "kotlin-spring-boot"
 
-include("api" , "web")
+include("api")
