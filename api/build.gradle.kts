@@ -3,10 +3,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.3.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
+    //querydsl 추가
+    id ("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.spring") version "1.3.72"
     kotlin("plugin.jpa") version "1.3.72"
-
     idea
 }
 
@@ -44,6 +45,8 @@ dependencies {
 
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17")
 
+    implementation("com.querydsl:querydsl-jpa")
+
 }
 
 tasks.withType<Test> {
@@ -57,3 +60,22 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+////querydsl 추가 시작
+//def querydslDir = "$buildDir/generated/querydsl"
+//
+//querydsl {
+//    jpa = true
+//    querydslSourcesDir = querydslDir
+//}
+//
+//sourceSets {
+//    main.java.srcDir querydslDir;
+//}
+//
+//configurations {
+//    querydsl.extendsFrom compileClasspath
+//}
+//
+//compileQuerydsl {
+//    options.annotationProcessorPath = configurations.querydsl
+//}
