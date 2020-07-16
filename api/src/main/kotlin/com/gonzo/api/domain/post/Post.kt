@@ -19,20 +19,8 @@ class Post : BaseEntity {
 
     @Column(name = "TITLE")
     private var title : String
-        get() {
-            return title
-        }
-        set(value) {
-            this.title = value
-        }
 
     @Column(name = "CONTENT")
     private var content : String ?= null
-    get() {
-       return this.content
-    }
-    set(value) {
-        this.content = value
-    }
 
 }

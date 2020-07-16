@@ -3,11 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.3.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
-    //querydsl 추가
+
     id ("com.ewerk.gradle.plugins.querydsl") version "1.0.10"
+
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.spring") version "1.3.72"
     kotlin("plugin.jpa") version "1.3.72"
+    kotlin("kapt") version "1.3.61"
+
     idea
 }
 
@@ -45,8 +48,19 @@ dependencies {
 
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17")
 
-    implementation("com.querydsl:querydsl-jpa")
+    api("com.querydsl:querydsl-jpa:4.2.2")
 
+    kapt("com.querydsl:querydsl-apt:4.2.2:jpa")
+    kapt("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
+}
+
+// 생성된 QClass들을 intelliJ IDEA가 사용할 수 있도록 소스코드 경로에 추가해 준다.
+idea {
+    module {
+        val kaptMain = file("${buildDir}")
+        sourceDirs.add(kaptMain)
+        generatedSourceDirs.add(kaptMain)
+    }
 }
 
 tasks.withType<Test> {
@@ -59,23 +73,3 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
-
-////querydsl 추가 시작
-//def querydslDir = "$buildDir/generated/querydsl"
-//
-//querydsl {
-//    jpa = true
-//    querydslSourcesDir = querydslDir
-//}
-//
-//sourceSets {
-//    main.java.srcDir querydslDir;
-//}
-//
-//configurations {
-//    querydsl.extendsFrom compileClasspath
-//}
-//
-//compileQuerydsl {
-//    options.annotationProcessorPath = configurations.querydsl
-//}
