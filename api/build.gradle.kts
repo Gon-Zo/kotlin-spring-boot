@@ -26,26 +26,24 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation ("org.apache.commons:commons-lang3:3.9")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-
-    api("com.querydsl:querydsl-jpa")
-
     annotationProcessor(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-
+    api("com.querydsl:querydsl-jpa")
     kapt("com.querydsl:querydsl-apt:4.2.1:jpa")
 
 }
 
-//tasks.withType<Test> {
-//    useJUnitPlatform()
-//}
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
@@ -53,3 +51,9 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
+//tasks.withType(Test) {
+//    scanForTestClasses = false
+//    include "**/*Test.class"
+//}
+
