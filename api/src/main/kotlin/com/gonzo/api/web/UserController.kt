@@ -11,19 +11,27 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/api/user")
-class UserController {
+class UserController (private val service : UserService){
 
-    private lateinit var service : UserService
+    @GetMapping("")
+    public fun showHello () : String{
+       return "Hello"
+    }
 
-    @ResponseBody
+
     @PostMapping("")
-    fun createByUser( dto : UserDto){
+    public fun createByUser(@RequestBody dto : UserDto){
         service.createdByUser(dto)
     }
 
     @DeleteMapping("/{seq}")
-    fun removeByUser(@PathVariable seq: Long) {
+    public fun removeByUser(@PathVariable seq: Long) {
         service.deleteByUser(seq)
+    }
+
+    @PutMapping("/{seq}")
+    public fun updateByUserInfo(@PathVariable seq : Long , @RequestBody dto : UserDto){
+        service.updateByUser(seq, dto)
     }
 
 }

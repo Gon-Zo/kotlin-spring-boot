@@ -15,4 +15,6 @@ interface UserService {
 
     fun deleteByUser(seq : Long)
 
+    fun updateByUser(seq : Long  , dto: UserDto)
+
 }

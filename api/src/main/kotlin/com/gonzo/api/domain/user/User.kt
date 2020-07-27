@@ -1,10 +1,8 @@
 package com.gonzo.api.domain.user
 
 import com.gonzo.api.domain.BaseEntity
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import org.hibernate.annotations.DynamicUpdate
+import javax.persistence.*
 
 /**
  * Create by pnw1517@gmail.com on 2020-07-26, 일
@@ -12,17 +10,19 @@ import javax.persistence.Table
  * Github : https://github.com/Gon-Zo
  */
 @Entity
-@Table(name="USER")
+@Table(name="APP_USER")
+@DynamicUpdate
 class User : BaseEntity {
 
     @Id
-    private var sequence : Long ?= null
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private var seq : Long ?= null
 
     @Column(nullable = false)
-    private var email : String ?= null
+     var email : String ?= null
 
     @Column(nullable = false)
-    private var password : String ?= null
+     var password : String ?= null
 
     constructor( email : String  , password  : String){
         this.email =  email
