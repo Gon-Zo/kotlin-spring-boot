@@ -28,6 +28,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17")
+//    implementation ("org.springframework.boot:spring-boot-starter-security")
+    implementation ("io.springfox:springfox-swagger2:2.7.0")
+    implementation ("io.springfox:springfox-swagger-ui:2.7.0")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
