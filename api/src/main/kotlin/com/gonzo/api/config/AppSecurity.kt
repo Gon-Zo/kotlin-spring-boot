@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
 /**
- * Create by pnw1517@gmail.com on 2020-07-28, 화
+ * Create by park031517@gmail.com on 2020-07-28, 화
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */

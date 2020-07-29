@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 /**
- * Create by pnw1517@gmail.com on 2020-07-28, 화
+ * Create by park031517@gmail.com on 2020-07-28, 화
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */

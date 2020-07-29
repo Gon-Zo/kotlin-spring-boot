@@ -3,7 +3,7 @@ package com.gonzo.api.web.dto
 import com.gonzo.api.domain.user.User
 
 /**
- * Create by pnw1517@gmail.com on 2020-07-27, 월
+ * Create by park031517@gmail.com on 2020-07-27, 월
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */

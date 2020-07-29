@@ -6,7 +6,7 @@ import com.gonzo.api.domain.user.support.UserSupport
 import com.gonzo.api.web.dto.UserDto
 import org.springframework.stereotype.Service
 /**
- * Create by pnw1517@gmail.com on 2020-07-26, 일
+ * Create by park031517@gmail.com on 2020-07-26, 일
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
