@@ -4,6 +4,7 @@ import com.gonzo.api.domain.user.User
 import com.gonzo.api.domain.user.UserRepository
 import com.gonzo.api.domain.user.support.UserSupport
 import com.gonzo.api.web.dto.UserDto
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 /**
  * Create by park031517@gmail.com on 2020-07-26, 일
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Service
 class UserServiceImpl( private val repository: UserRepository, private val support: UserSupport) : UserService {
 
     override fun createdByUser(dto: UserDto) {
-        repository.save(User(dto!!.email, dto!!.password))
+        var password = encodingByPwd(dto.password)
+        repository.save(User(dto!!.email, password!!))
     }
 
     override fun modifyByUser(seq: Long, dto: UserDto) {
@@ -30,6 +32,10 @@ class UserServiceImpl( private val repository: UserRepository, private val suppo
         user.email = dto.email
         user.password = dto.password
         repository.save(user)
+    }
+
+    private fun encodingByPwd(pwd: String): String? {
+        return BCryptPasswordEncoder().encode(pwd)
     }
 
 }
