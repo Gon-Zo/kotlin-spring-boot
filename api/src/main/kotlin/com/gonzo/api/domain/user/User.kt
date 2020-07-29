@@ -2,6 +2,8 @@ package com.gonzo.api.domain.user
 
 import com.gonzo.api.domain.BaseEntity
 import org.hibernate.annotations.DynamicUpdate
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
 
 /**
