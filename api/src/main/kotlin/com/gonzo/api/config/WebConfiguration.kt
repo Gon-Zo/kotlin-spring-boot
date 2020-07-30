@@ -14,7 +14,6 @@ class WebConfiguration {
 
     @InitBinder
     public fun onInitBinder(webDataBinder: WebDataBinder) {
-        print("TEST SUCCEES")
         webDataBinder.initDirectFieldAccess()
     }
 

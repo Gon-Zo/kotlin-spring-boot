@@ -1,6 +1,5 @@
 package com.gonzo.api.core.filter
 
-import org.apache.tomcat.jni.User.username
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -21,9 +20,7 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
         setAuthenticationManager(authenticationManager)
         usernameParameter = "email";
         passwordParameter = "password";
-        setPostOnly(true)
         setFilterProcessesUrl("/api/login");
-
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
@@ -36,7 +33,11 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
 
         val authRequest = UsernamePasswordAuthenticationToken(email, password)
 
+        setDetails(request, authRequest)
+
         return this.authenticationManager.authenticate(authRequest);
+
+//        return this.authenticationManager.authenticate(authRequest);
 
     }
 
