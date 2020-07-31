@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
+
 class AuthUserDetailsService : UserDetailsService{
 
     override fun loadUserByUsername(username: String?): UserDetails {

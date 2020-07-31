@@ -21,6 +21,7 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
         usernameParameter = "email";
         passwordParameter = "password";
         setFilterProcessesUrl("/api/login");
+        setPostOnly(true)
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
@@ -36,8 +37,6 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
         setDetails(request, authRequest)
 
         return this.authenticationManager.authenticate(authRequest);
-
-//        return this.authenticationManager.authenticate(authRequest);
 
     }
 

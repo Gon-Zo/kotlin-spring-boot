@@ -1,5 +1,6 @@
 package com.gonzo.api.config
 
+import com.gonzo.api.core.auth.AuthUserDetailsService
 import com.gonzo.api.core.filter.CorsFilter
 import com.gonzo.api.core.filter.JwtRequestFilter
 import com.gonzo.api.core.filter.LoginUserFilter
@@ -29,8 +30,7 @@ class AppSecurity(private val corsFilter: CorsFilter,
 
     override fun configure(http: HttpSecurity?) {
 
-        http!!.csrf()
-                .disable()
+        http!!.csrf().disable()
                 .addFilterBefore(corsFilter, BasicAuthenticationFilter::class.java)
                 .addFilterBefore(LoginUserFilter(authenticationManager()) , CorsFilter::class.java)
                 .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
@@ -56,6 +56,10 @@ class AppSecurity(private val corsFilter: CorsFilter,
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(jwtUserDetailsService)
                 .passwordEncoder(beanConfiguration.passwordEncoder())
+    }
+
+    override fun configure(auth: AuthenticationManagerBuilder?) {
+        auth!!.userDetailsService(AuthUserDetailsService()).passwordEncoder(beanConfiguration.passwordEncoder())
     }
 
 }
