@@ -5,47 +5,49 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.*
 
-
+/**
+ * Create by park031517@gmail.com on 2020-08-6, 목
+ * Blog : https://zzz-oficial.tistory.com
+ * Github : https://github.com/Gon-Zo
+ */
 class AuthUserDetails : UserDetails {
 
     private var email: String? = null;
 
     private var password: String? = null;
 
+    constructor(email: String, password: String) {
+        this.email = email
+        this.password = password
+    }
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        TODO("Not yet implemented")
         val auth = ArrayList<GrantedAuthority>()
-        auth.add(SimpleGrantedAuthority(""))
+        auth.add(SimpleGrantedAuthority("USER"))
         return auth
     }
 
     override fun isEnabled(): Boolean {
-        TODO("Not yet implemented")
         return true
     }
 
-    override fun getUsername(): String? {
-        TODO("Not yet implemented")
-        return this.email
+    override fun getUsername(): String {
+        return this.email!!
     }
 
     override fun isCredentialsNonExpired(): Boolean {
-        TODO("Not yet implemented")
         return true
     }
 
-    override fun getPassword(): String? {
-        TODO("Not yet implemented")
-        return this.password
+    override fun getPassword(): String {
+        return this.password!!
     }
 
     override fun isAccountNonExpired(): Boolean {
-        TODO("Not yet implemented")
         return true
     }
 
     override fun isAccountNonLocked(): Boolean {
-        TODO("Not yet implemented")
         return true
     }
 

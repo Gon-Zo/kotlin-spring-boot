@@ -1,10 +1,10 @@
 package com.gonzo.api.config
 
 import com.gonzo.api.core.auth.AuthUserDetailsService
-import com.gonzo.api.core.filter.CorsFilter
 import com.gonzo.api.core.filter.JwtRequestFilter
 import com.gonzo.api.core.filter.LoginUserFilter
-import org.springframework.beans.factory.annotation.Autowired
+import com.gonzo.api.domain.user.UserRepository
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -12,8 +12,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 /**
  * Create by park031517@gmail.com on 2020-07-28, 화
@@ -22,17 +23,15 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
  */
 @Configuration
 @EnableWebSecurity
-class AppSecurity(private val corsFilter: CorsFilter,
+class AppSecurity(
                   private val jwtRequestFilter: JwtRequestFilter,
-                  private val jwtUserDetailsService: UserDetailsService,
-                  private val beanConfiguration: BeanConfiguration
+                  private val authUserDetailsService: AuthUserDetailsService
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
 
         http!!.csrf().disable()
-                .addFilterBefore(corsFilter, BasicAuthenticationFilter::class.java)
-                .addFilterBefore(LoginUserFilter(authenticationManager()) , CorsFilter::class.java)
+                .addFilterAfter(LoginUserFilter(authenticationManager()) , UsernamePasswordAuthenticationFilter::class.java)
                 .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -44,22 +43,19 @@ class AppSecurity(private val corsFilter: CorsFilter,
         web!!.ignoring().antMatchers(
                 "/v2/api-docs",
                 "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
+                "/swagger-resources/**", "/configuration/security", "/swagger-ui.html",
                 "/webjars/**"
         );
     }
 
-    @Autowired
-    @Throws(Exception::class)
-    fun configureGlobal(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(jwtUserDetailsService)
-                .passwordEncoder(beanConfiguration.passwordEncoder())
+    override fun configure(auth: AuthenticationManagerBuilder?) {
+        auth!!.userDetailsService(authUserDetailsService)
+                .passwordEncoder(passwordEncoder())
     }
 
-    override fun configure(auth: AuthenticationManagerBuilder?) {
-        auth!!.userDetailsService(AuthUserDetailsService()).passwordEncoder(beanConfiguration.passwordEncoder())
+    @Bean
+    fun passwordEncoder(): PasswordEncoder? {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
 }

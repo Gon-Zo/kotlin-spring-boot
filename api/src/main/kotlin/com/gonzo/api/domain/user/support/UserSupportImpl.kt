@@ -10,6 +10,11 @@ import org.apache.commons.lang3.StringUtils.isNotEmpty
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
+/**
+ * Create by park031517@gmail.com on [2020-08-6, 목
+ * Blog : https://zzz-oficial.tistory.com
+ * Github : https://github.com/Gon-Zo
+ */
 @Repository
 class UserSupportImpl(entityManager : EntityManager , jpaRepositoryFactory: JpaRepositoryFactory) : UserSupport , QuerydslRepositorySupport(User::class.java) {
 

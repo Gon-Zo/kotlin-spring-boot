@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service
 class UserServiceImpl( private val repository: UserRepository, private val support: UserSupport) : UserService {
 
     override fun createdByUser(dto: UserDto) {
-        var password = encodingByPwd(dto.password)
-        repository.save(User(dto!!.email, password!!))
+        dto.encodingPassword()
+        repository.save(User(dto!!.email, dto!!.password))
     }
 
     override fun modifyByUser(seq: Long, dto: UserDto) {
@@ -32,10 +32,6 @@ class UserServiceImpl( private val repository: UserRepository, private val suppo
         user.email = dto.email
         user.password = dto.password
         repository.save(user)
-    }
-
-    private fun encodingByPwd(pwd: String): String? {
-        return BCryptPasswordEncoder().encode(pwd)
     }
 
 }

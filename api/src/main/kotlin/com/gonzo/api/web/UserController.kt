@@ -18,9 +18,8 @@ class UserController (private val service : UserService){
        return "Hello"
     }
 
-
     @PostMapping("")
-    public fun createByUser(@RequestBody dto : UserDto){
+    public fun createByUser( dto: UserDto) {
         service.createdByUser(dto)
     }
 
@@ -30,7 +29,7 @@ class UserController (private val service : UserService){
     }
 
     @PutMapping("/{seq}")
-    public fun updateByUserInfo(@PathVariable seq : Long , @RequestBody dto : UserDto){
+    public fun updateByUserInfo(@PathVariable seq : Long , dto : UserDto){
         service.updateByUser(seq, dto)
     }
 

@@ -18,10 +18,10 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
 
     init {
         setAuthenticationManager(authenticationManager)
-        usernameParameter = "email";
-        passwordParameter = "password";
+//        usernameParameter = "email";
+//        passwordParameter = "password";
         setFilterProcessesUrl("/api/login");
-        setPostOnly(true)
+//        setPostOnly(true)
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
