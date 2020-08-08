@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.*
 class UserController (private val service : UserService){
 
     @GetMapping("")
-    public fun showHello () : String{
+    fun showHello () : String{
        return "Hello"
     }
 
     @PostMapping("")
-    public fun createByUser( dto: UserDto) {
+    fun createByUser( dto: UserDto) {
         service.createdByUser(dto)
     }
 
     @DeleteMapping("/{seq}")
-    public fun removeByUser(@PathVariable seq: Long) {
+    fun removeByUser(@PathVariable seq: Long) {
         service.deleteByUser(seq)
     }
 
     @PutMapping("/{seq}")
-    public fun updateByUserInfo(@PathVariable seq : Long , dto : UserDto){
+    fun updateByUserInfo(@PathVariable seq : Long , dto : UserDto){
         service.updateByUser(seq, dto)
     }
 

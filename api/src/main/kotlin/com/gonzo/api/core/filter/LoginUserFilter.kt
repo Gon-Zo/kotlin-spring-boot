@@ -1,5 +1,7 @@
 package com.gonzo.api.core.filter
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.gonzo.api.web.dto.RequestDto
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -26,11 +28,11 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
 
-        logger.info("===== LoginUserFilter =====" )
+        logger.info("FILTER -> LoginUserFilter")
 
-        var email : String = request!!.getParameter("email")
+        var email = request!!.getParameter("email")
 
-        var password : String = request!!.getParameter("password")
+        var password = request!!.getParameter("password")
 
         val authRequest = UsernamePasswordAuthenticationToken(email, password)
 
@@ -41,7 +43,13 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
     }
 
     override fun successfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse?, chain: FilterChain?, authResult: Authentication?) {
-        super.successfulAuthentication(request, response, chain, authResult)
+
+        var objectMapper  = ObjectMapper()
+
+        response!!.outputStream
+                .println(objectMapper
+                        .writeValueAsString(RequestDto("500" , "SUCCESS")))
+
     }
 
     override fun unsuccessfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse?, failed: AuthenticationException?) {

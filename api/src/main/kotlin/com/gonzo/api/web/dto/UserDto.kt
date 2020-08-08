@@ -15,7 +15,7 @@ data class UserDto (var email : String = "", var password: String = "") {
     }
 
     fun encodingPassword(){
-        this.password = "{noop}" + BCryptPasswordEncoder().encode(this.password)
+        this.password = BCryptPasswordEncoder().encode(this.password)
     }
 
 }

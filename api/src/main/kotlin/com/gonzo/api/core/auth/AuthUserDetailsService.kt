@@ -5,6 +5,7 @@ import com.gonzo.api.domain.user.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
+import com.gonzo.api.core.auth.AuthUserDetails as AuthUserDetails1
 
 /**
  * Create by park031517@gmail.com on 2020-07-30, 목
@@ -16,11 +17,9 @@ class AuthUserDetailsService(private var userRepository : UserRepository) : User
 
     override fun loadUserByUsername(username: String): UserDetails {
 
-        var user: User = userRepository.findByEmail(username);
+        var user = userRepository.findByEmail(username);
 
-        var authUser : AuthUserDetails = AuthUserDetails(user.email!! , user.password!!)
-
-        return authUser
+        return AuthUserDetails1(user.email!! , user.password!!)
     }
 
 }

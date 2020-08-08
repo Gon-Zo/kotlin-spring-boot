@@ -3,7 +3,6 @@ package com.gonzo.api.config
 import com.gonzo.api.core.auth.AuthUserDetailsService
 import com.gonzo.api.core.filter.JwtRequestFilter
 import com.gonzo.api.core.filter.LoginUserFilter
-import com.gonzo.api.domain.user.UserRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -12,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
@@ -30,11 +29,16 @@ class AppSecurity(
 
     override fun configure(http: HttpSecurity?) {
 
-        http!!.csrf().disable()
+        http!!.csrf()
+                .disable()
                 .addFilterAfter(LoginUserFilter(authenticationManager()) , UsernamePasswordAuthenticationFilter::class.java)
-                .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+
+
+
+//                .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
 
 
     }
@@ -49,13 +53,12 @@ class AppSecurity(
     }
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
-        auth!!.userDetailsService(authUserDetailsService)
-                .passwordEncoder(passwordEncoder())
+        auth!!.userDetailsService(authUserDetailsService).passwordEncoder(passwordEncoder())
     }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder? {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+        return BCryptPasswordEncoder()
     }
 
 }
