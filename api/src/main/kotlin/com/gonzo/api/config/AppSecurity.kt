@@ -1,6 +1,7 @@
 package com.gonzo.api.config
 
 import com.gonzo.api.core.auth.AuthUserDetailsService
+import com.gonzo.api.core.auth.JwtUtils
 import com.gonzo.api.core.filter.JwtRequestFilter
 import com.gonzo.api.core.filter.LoginUserFilter
 import org.springframework.context.annotation.Bean
@@ -24,14 +25,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 class AppSecurity(
                   private val jwtRequestFilter: JwtRequestFilter,
-                  private val authUserDetailsService: AuthUserDetailsService
+                  private val authUserDetailsService: AuthUserDetailsService,
+                  private val jwtUtils: JwtUtils
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
 
         http!!.csrf()
                 .disable()
-                .addFilterAfter(LoginUserFilter(authenticationManager()) , UsernamePasswordAuthenticationFilter::class.java)
+                .addFilterAfter(LoginUserFilter(authenticationManager()  ,jwtUtils) , UsernamePasswordAuthenticationFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 

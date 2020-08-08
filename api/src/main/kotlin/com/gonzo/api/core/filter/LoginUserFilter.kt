@@ -1,12 +1,15 @@
 package com.gonzo.api.core.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.gonzo.api.core.auth.AuthUserDetails
+import com.gonzo.api.core.auth.JwtUtils
 import com.gonzo.api.web.dto.RequestDto
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import java.util.*
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -16,14 +19,14 @@ import javax.servlet.http.HttpServletResponse
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-class LoginUserFilter ( authenticationManager : AuthenticationManager) : UsernamePasswordAuthenticationFilter() {
+class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: JwtUtils) : UsernamePasswordAuthenticationFilter() {
+
+    var jwtUtils: JwtUtils? = null
 
     init {
         setAuthenticationManager(authenticationManager)
-//        usernameParameter = "email";
-//        passwordParameter = "password";
+        this.jwtUtils = jwtUtils
         setFilterProcessesUrl("/api/login");
-//        setPostOnly(true)
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
@@ -44,11 +47,21 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
 
     override fun successfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse?, chain: FilterChain?, authResult: Authentication?) {
 
-        var objectMapper  = ObjectMapper()
+        var objectMapper = ObjectMapper()
+
+        var autUserDetails: AuthUserDetails = authResult!!.principal as AuthUserDetails
+
+        var email = autUserDetails.username
+
+        val claims: MutableMap<String?, Any?> = HashMap()
+
+        claims["email"] = email
+
+        var jwt = jwtUtils!!.doGenerateToken(claims, email)
 
         response!!.outputStream
                 .println(objectMapper
-                        .writeValueAsString(RequestDto("500" , "SUCCESS")))
+                        .writeValueAsString(RequestDto("500", jwt!!)))
 
     }
 
@@ -57,3 +70,4 @@ class LoginUserFilter ( authenticationManager : AuthenticationManager) : Usernam
     }
 
 }
+

@@ -43,6 +43,12 @@ dependencies {
     api("com.querydsl:querydsl-jpa")
     kapt("com.querydsl:querydsl-apt:4.2.1:jpa")
 
+    implementation("io.jsonwebtoken:jjwt-api:0.11.0")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.0")
+//    , { exclude group :'io.jsonwebtoken', module:'jjwt-api' }
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.0")
+//    , { exclude group :'io.jsonwebtoken', module:'jjwt-api' }
+
 }
 
 tasks.withType<Test> {
