@@ -1,6 +1,5 @@
 package com.gonzo.api.core.auth
 
-import com.gonzo.api.domain.user.User
 import com.gonzo.api.domain.user.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -17,7 +16,7 @@ class AuthUserDetailsService(private var userRepository : UserRepository) : User
 
     override fun loadUserByUsername(username: String): UserDetails {
 
-        var user = userRepository.findByEmail(username);
+        var user = userRepository.findByUseIsTrueAnAndEmail(username);
 
         return AuthUserDetails1(user.email!! , user.password!!)
     }

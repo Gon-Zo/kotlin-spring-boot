@@ -26,6 +26,7 @@ class UserServiceImpl( private val repository: UserRepository,
     @Transactional
     override fun createdByUser(dto: UserDto) {
         dto.encodingPassword()
+        dto.isUseToUser()
         var group = groupRepository.findByTitle(Groups.USER.value)
         var user = repository.saveAndFlush(dto.toEntity())
         userGroupRepository.save(UserGroupDto(user, group).toEntity())

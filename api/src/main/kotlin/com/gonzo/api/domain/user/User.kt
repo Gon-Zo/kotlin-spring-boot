@@ -26,9 +26,13 @@ class User : BaseEntity {
     @Column(nullable = false)
      var password : String ?= null
 
-    constructor( email : String  , password  : String){
+    @Column( name = "is_use" , nullable = false)
+    var isUse : Boolean
+
+    constructor( email : String  , password  : String , isUse : Boolean){
         this.email =  email
         this.password = password
+        this.isUse = isUse
     }
 
 }
