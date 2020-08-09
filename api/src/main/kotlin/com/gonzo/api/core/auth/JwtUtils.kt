@@ -8,6 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails
 import java.util.*
 import java.util.function.Function
 
+/**
+ * Create by park031517@gmail.com on 2020-08-9, 일
+ * Blog : https://zzz-oficial.tistory.com
+ * Github : https://github.com/Gon-Zo
+ */
 class JwtUtils {
 
     private val serialVersionUID = -2550185165626007488L
