@@ -3,6 +3,7 @@ package com.gonzo.api.core.filter
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.gonzo.api.core.auth.AuthUserDetails
 import com.gonzo.api.core.auth.JwtUtils
+import com.gonzo.api.core.utils.AppUtils
 import com.gonzo.api.web.dto.RequestDto
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -33,9 +34,13 @@ class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: Jw
 
         logger.info("FILTER -> LoginUserFilter")
 
-        var email = request!!.getParameter("email")
 
-        var password = request!!.getParameter("password")
+        var requestBody = getRequestBodyToString(request!!)
+
+
+        var email = AppUtils.passerJSONObject(requestBody!! , "email") as String
+
+        var password  = AppUtils.passerJSONObject(requestBody!! , "password") as String
 
         val authRequest = UsernamePasswordAuthenticationToken(email, password)
 
@@ -67,6 +72,20 @@ class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: Jw
 
     override fun unsuccessfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse?, failed: AuthenticationException?) {
         super.unsuccessfulAuthentication(request, response, failed)
+    }
+
+    private fun getRequestBodyToString(request: HttpServletRequest): String? {
+        val jb = StringBuffer()
+        var line: String? = null
+        try {
+            val reader = request.reader
+            while (reader.readLine().also { line = it } != null) {
+                jb.append(line)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return jb.toString()
     }
 
 }
