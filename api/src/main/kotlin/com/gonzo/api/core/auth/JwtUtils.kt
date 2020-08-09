@@ -10,16 +10,13 @@ import java.util.function.Function
 
 class JwtUtils {
 
-    constructor(){
-
-    }
-
     private val serialVersionUID = -2550185165626007488L
 
     private val JWT_TOKEN_VALIDITY = 5 * 60 * 60.toLong()
 
     @Value("\${jwt.secret}")
-    private val secret: String? = null
+//    private lateinit var secret: String
+    private val secret: String  ?= "TESTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     private fun getKeys(): ByteArray? {
         return secret!!.toByteArray()

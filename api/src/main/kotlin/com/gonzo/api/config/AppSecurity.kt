@@ -23,25 +23,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-class AppSecurity(
-                  private val jwtRequestFilter: JwtRequestFilter,
-                  private val authUserDetailsService: AuthUserDetailsService,
-                  private val jwtUtils: JwtUtils
-) : WebSecurityConfigurerAdapter() {
+class AppSecurity(private val jwtRequestFilter: JwtRequestFilter,
+        private val authUserDetailsService: AuthUserDetailsService) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
 
-        http!!.csrf()
-                .disable()
-                .addFilterAfter(LoginUserFilter(authenticationManager()  ,jwtUtils) , UsernamePasswordAuthenticationFilter::class.java)
+        http!!.csrf().disable()
+                .addFilterAfter(LoginUserFilter(authenticationManager() , JwtUtils()) , UsernamePasswordAuthenticationFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-
-
-
 //                .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
-
 
     }
 
