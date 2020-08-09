@@ -29,7 +29,7 @@ class UserController (private val service : UserService){
     }
 
     @PutMapping("/{seq}")
-    fun updateByUserInfo(@PathVariable seq : Long , dto : UserDto){
+    fun updateByUserInfo(@PathVariable seq : Long , @RequestBody dto : UserDto){
         service.updateByUser(seq, dto)
     }
 
