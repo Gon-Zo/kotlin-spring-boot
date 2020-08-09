@@ -33,7 +33,13 @@ class AppSecurity(private val jwtRequestFilter: JwtRequestFilter,
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+//        http!!.csrf().disable()
+//                .antMatcher("/api**")
+//                .authorizeRequests()
+//                .and()
 //                .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
     }
 
