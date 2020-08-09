@@ -19,7 +19,7 @@ class UserController (private val service : UserService){
     }
 
     @PostMapping("")
-    fun createByUser( dto: UserDto) {
+    fun createByUser(@RequestBody dto: UserDto) {
         service.createdByUser(dto)
     }
 
