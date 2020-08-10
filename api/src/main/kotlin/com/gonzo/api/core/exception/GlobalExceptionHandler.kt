@@ -29,4 +29,21 @@ class GlobalExceptionHandler {
 
     }
 
+    @ResponseBody
+    @ExceptionHandler(AppException::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handlerException(exception: AppException) : ErrorDto{
+
+        var errorCode = exception.errorCode
+
+        logger!!.error(exception.message)
+
+        logger!!.error(ExceptionUtils.getStackTrace(exception))
+
+        return ErrorDto( errorCode.errorCode ,
+                errorCode.message,
+                ExceptionUtils.getStackTrace(exception))
+
+    }
+
 }

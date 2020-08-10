@@ -1,6 +1,7 @@
 package com.gonzo.api.core.auth
 
 import com.gonzo.api.core.exception.AppException
+import com.gonzo.api.core.exception.ErrorCode
 import com.gonzo.api.domain.user.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -19,9 +20,8 @@ class AuthUserDetailsService(private var userRepository : UserRepository) : User
 
         var user = userRepository.findByEmail(username);
 
-        // todo : custom exception
         if(isNotIsUse(user.isUse)) {
-            throw NullPointerException()
+            throw AppException(ErrorCode.NOT_USE_USER)
         }
 
         return AuthUserDetails1(user.email!! , user.password!!)

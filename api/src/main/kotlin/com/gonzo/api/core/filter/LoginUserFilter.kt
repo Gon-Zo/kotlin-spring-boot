@@ -3,6 +3,8 @@ package com.gonzo.api.core.filter
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.gonzo.api.core.auth.AuthUserDetails
 import com.gonzo.api.core.auth.JwtUtils
+import com.gonzo.api.core.exception.AppException
+import com.gonzo.api.core.exception.ErrorDto
 import com.gonzo.api.core.utils.AppUtils
 import com.gonzo.api.web.dto.RequestDto
 import org.springframework.security.authentication.AuthenticationManager
@@ -72,6 +74,17 @@ class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: Jw
 
     override fun unsuccessfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse?, failed: AuthenticationException?) {
         super.unsuccessfulAuthentication(request, response, failed)
+
+//        var objectMapper  = ObjectMapper()
+//
+//        var exception : AppException = failed!!.cause as AppException
+//
+//        var code =exception.errorCode.errorCode
+//
+//        var message  = exception.errorCode.message
+//
+//        response!!.outputStream.println(objectMapper.writeValueAsString(ErrorDto( code , message , "")))
+
     }
 
     private fun getRequestBodyToString(request: HttpServletRequest): String? {

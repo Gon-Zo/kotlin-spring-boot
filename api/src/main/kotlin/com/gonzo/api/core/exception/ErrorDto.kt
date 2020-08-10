@@ -6,3 +6,4 @@ package com.gonzo.api.core.exception
  * Github : https://github.com/Gon-Zo
  */
 data class ErrorDto(private var errorCode: String, private var errorMessage: String, private var errorDetail: String)
+
