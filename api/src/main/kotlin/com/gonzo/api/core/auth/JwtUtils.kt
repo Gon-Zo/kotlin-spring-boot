@@ -3,7 +3,9 @@ package com.gonzo.api.core.auth
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.springframework.beans.factory.annotation.Configurable
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.*
 import java.util.function.Function

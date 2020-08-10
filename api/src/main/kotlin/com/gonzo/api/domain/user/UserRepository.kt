@@ -2,6 +2,7 @@ package com.gonzo.api.domain.user
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 
 /**
  * Create by park031517@gmail.com on 2020-07-26, 일
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 interface UserRepository : JpaRepository<User , Long> {
-    fun findByEmail(email: String): User
-    fun findByUseIsTrueAnAndEmail(email : String) : User
+//    fun findByEmail(email: String): User
+//    fun findByUseIsTrueAnAndEmail(email : String) : User
+
+    fun findByEmail(email : String) : User
 }
