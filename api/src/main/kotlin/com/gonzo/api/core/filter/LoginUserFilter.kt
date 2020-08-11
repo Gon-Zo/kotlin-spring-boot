@@ -29,16 +29,14 @@ class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: Jw
     init {
         setAuthenticationManager(authenticationManager)
         this.jwtUtils = jwtUtils
-        setFilterProcessesUrl("/api/login");
+        setFilterProcessesUrl("/login");
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
 
         logger.info("FILTER -> LoginUserFilter")
 
-
         var requestBody = getRequestBodyToString(request!!)
-
 
         var email = AppUtils.passerJSONObject(requestBody!! , "email") as String
 

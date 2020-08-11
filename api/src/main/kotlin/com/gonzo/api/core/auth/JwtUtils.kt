@@ -5,8 +5,10 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.beans.factory.annotation.Configurable
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.stereotype.Component
 import java.util.*
 import java.util.function.Function
 
@@ -15,6 +17,7 @@ import java.util.function.Function
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
+@Component
 class JwtUtils {
 
     private val serialVersionUID = -2550185165626007488L
@@ -76,7 +79,7 @@ class JwtUtils {
     }
 
     //jwt 토큰에서 사용자 이름 검색
-    private fun getUsernameFromToken(token: String?): String {
+    fun getUsernameFromToken(token: String?): String {
         return getClaimFromToken(token, Function { obj: Claims -> obj.subject })
     }
 

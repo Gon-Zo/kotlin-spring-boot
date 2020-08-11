@@ -2,6 +2,7 @@ package com.gonzo.api.config
 
 import com.gonzo.api.core.auth.AuthUserDetailsService
 import com.gonzo.api.core.auth.JwtUtils
+import com.gonzo.api.core.filter.CorsFilter
 import com.gonzo.api.core.filter.JwtRequestFilter
 import com.gonzo.api.core.filter.LoginUserFilter
 import org.springframework.context.annotation.Bean
@@ -14,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
 /**
  * Create by park031517@gmail.com on 2020-07-28, 화
@@ -29,17 +30,11 @@ class AppSecurity(private val jwtRequestFilter: JwtRequestFilter,
     override fun configure(http: HttpSecurity?) {
 
         http!!.csrf().disable()
-                .addFilterAfter(LoginUserFilter(authenticationManager() , JwtUtils()) , UsernamePasswordAuthenticationFilter::class.java)
+                .addFilterBefore(CorsFilter() , BasicAuthenticationFilter::class.java)
+                .addFilterAfter(LoginUserFilter(authenticationManager() , JwtUtils()) , CorsFilter::class.java)
+                .addFilterAfter(jwtRequestFilter, CorsFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-//        http!!.csrf().disable()
-//                .antMatcher("/api**")
-//                .authorizeRequests()
-//                .and()
-//                .addFilterAfter(jwtRequestFilter, LoginUserFilter::class.java)
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
     }
 
