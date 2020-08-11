@@ -44,7 +44,7 @@ class JwtRequestFilter (detailsService: AuthUserDetailsService , jwtUtils: JwtUt
         var userName : String ?= null
 
         if(url.startsWith("/statics")){
-            doFilter(request, response, filterChain)
+            filterChain.doFilter(request, response)
         } else {
 
             try {

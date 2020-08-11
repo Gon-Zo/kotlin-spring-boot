@@ -26,7 +26,7 @@ class JwtUtils {
 
     @Value("\${jwt.secret}")
 //    private lateinit var secret: String
-    private val secret: String  ?= "TESTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    private val secret: String  ?= "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     private fun getKeys(): ByteArray? {
         return secret!!.toByteArray()
