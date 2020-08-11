@@ -12,5 +12,7 @@ enum class ErrorCode (val stats : Int , val errorCode : String , val message : S
     NOT_FOUND_TOKEN( 500 , "A001" , "Not Found Token"),
     UNABLE_JWT_TOKEN( 500 , "A002" , "Unable Jwt Token"),
     EXPIRED_JWT_TOKEN( 500 , "A004" , "EXPIRED JWT TOKEN"),
-    IS_NOT_VALIDATE( 500 , "A004" , "IS NOT VALIDATE")
+    IS_NOT_VALIDATE( 500 , "A005" , "IS NOT VALIDATE"),
+    NOT_FOUND_USER( 500 , "U002" , "Not Found User")
+
 }

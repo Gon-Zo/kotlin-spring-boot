@@ -1,6 +1,8 @@
 package com.gonzo.api.service.user
 
 import com.gonzo.api.core.enums.Groups
+import com.gonzo.api.core.exception.AppException
+import com.gonzo.api.core.exception.ErrorCode
 import com.gonzo.api.domain.group.GroupRepository
 import com.gonzo.api.domain.user.User
 import com.gonzo.api.domain.user.UserRepository
@@ -25,8 +27,17 @@ class UserServiceImpl( private val repository: UserRepository,
 
     @Transactional
     override fun createdByUser(dto: UserDto) {
+
+        var sameUser = repository.findByEmail(dto.email)
+
+        if (sameUser.isPresent){
+           throw AppException(ErrorCode.NOT_FOUND_USER)
+        }
+
         dto.encodingPassword()
+
         dto.isUseToUser()
+
 //        var group = groupRepository.findByTitle(Groups.USER.value)
         var user = repository.saveAndFlush(dto.toEntity())
 //        userGroupRepository.save(UserGroupDto(user, group).toEntity())

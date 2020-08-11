@@ -11,8 +11,5 @@ import java.util.*
  */
 @Repository
 interface UserRepository : JpaRepository<User , Long> {
-//    fun findByEmail(email: String): User
-//    fun findByUseIsTrueAnAndEmail(email : String) : User
-
-    fun findByEmail(email : String) : User
+    fun findByEmail(email : String) : Optional<User>
 }

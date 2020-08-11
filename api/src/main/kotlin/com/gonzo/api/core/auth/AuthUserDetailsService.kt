@@ -6,6 +6,7 @@ import com.gonzo.api.domain.user.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
+import java.lang.NullPointerException
 import com.gonzo.api.core.auth.AuthUserDetails as AuthUserDetails1
 
 /**
@@ -18,7 +19,9 @@ class AuthUserDetailsService(private var userRepository : UserRepository) : User
 
     override fun loadUserByUsername(username: String): UserDetails {
 
-        var user = userRepository.findByEmail(username);
+        var user = userRepository
+                .findByEmail(username)
+                .orElseThrow{AppException(ErrorCode.NOT_FOUND_USER)}
 
         if(isNotIsUse(user.isUse)) {
             throw AppException(ErrorCode.NOT_USE_USER)
