@@ -3,10 +3,7 @@ package com.gonzo.api.core.auth
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.beans.factory.annotation.Configurable
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
@@ -26,10 +23,11 @@ class JwtUtils {
 
     @Value("\${jwt.secret}")
 //    private lateinit var secret: String
-    private val secret: String  ?= "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    private val secret: String? = "DummyKeyStringDummyKeyStringDummyKeyStringDummyKeyStringDummyKeyStringDummyKeyString"
 
-    private fun getKeys(): ByteArray? {
-        return secret!!.toByteArray()
+    private fun getKeys(): String? {
+//        return secret!!.toByteArray()
+        return Base64.getEncoder().encodeToString(secret!!.toByteArray())
     }
 
     // 토큰에서 정보를 검색하려면 비밀 키가 필요합니다
