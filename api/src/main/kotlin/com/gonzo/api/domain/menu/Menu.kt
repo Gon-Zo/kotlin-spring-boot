@@ -27,4 +27,5 @@ class Menu : BaseEntity {
     @Column(nullable = false)
     private var isUse : Boolean ?= false
 
+
 }
