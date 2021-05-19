@@ -1,8 +1,5 @@
 package com.gonzo.api.core.exception
 
-import com.fasterxml.jackson.annotation.JsonAlias
-import com.sun.xml.internal.ws.developer.Serialization
-
 /**
  * Create by park031517@gmail.com on 2020-08-9, 일
  * Blog : https://zzz-oficial.tistory.com
