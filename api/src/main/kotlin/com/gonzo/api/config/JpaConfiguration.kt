@@ -15,11 +15,11 @@ import javax.persistence.PersistenceContext
 class JpaConfiguration {
 
     @PersistenceContext
-    private lateinit var entityManager : EntityManager
+    private lateinit var entityManager: EntityManager
 
     @Bean
-    fun setJpaRepositoryFactory() : JpaRepositoryFactory{
-       return JpaRepositoryFactory(this.entityManager)
+    fun setJpaRepositoryFactory(): JpaRepositoryFactory {
+        return JpaRepositoryFactory(this.entityManager)
     }
 
 }

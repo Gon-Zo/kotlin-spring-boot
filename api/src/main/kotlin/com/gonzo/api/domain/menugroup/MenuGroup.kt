@@ -12,19 +12,19 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "APP_MENU_GROUP")
-class MenuGroup : BaseEntity{
+class MenuGroup : BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var seq : Long ?= null
+    private var seq: Long? = null
 
     @OneToOne
-    private var group : Group
+    private var group: Group
 
     @OneToOne
-    private var menu : Menu
+    private var menu: Menu
 
-    constructor(menu: Menu, group : Group) {
+    constructor(menu: Menu, group: Group) {
         this.menu = menu
         this.group = group
     }

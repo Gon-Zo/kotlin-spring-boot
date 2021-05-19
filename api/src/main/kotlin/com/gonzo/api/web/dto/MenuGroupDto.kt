@@ -9,8 +9,8 @@ import com.gonzo.api.domain.menugroup.MenuGroup
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-data class MenuGroupDto(var menu : Menu, var group : Group){
-    fun toEntity () : MenuGroup{
-       return MenuGroup(this.menu , this.group)
+data class MenuGroupDto(var menu: Menu, var group: Group) {
+    fun toEntity(): MenuGroup {
+        return MenuGroup(this.menu, this.group)
     }
 }

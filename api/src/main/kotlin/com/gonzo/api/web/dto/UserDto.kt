@@ -8,21 +8,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-data class UserDto(var email: String, var password: String , var isUse : Boolean) {
+data class UserDto(var email: String, var password: String, var isUse: Boolean) {
 
     fun toEntity(): User {
-        return User(this.email, this.password , isUse)
+        return User(this.email, this.password, isUse)
     }
 
     fun encodingPassword() {
         this.password = BCryptPasswordEncoder().encode(this.password)
     }
 
-    fun isUseToUser(){
+    fun isUseToUser() {
         this.isUse = true
     }
 
-    fun isNotUseToUser(){
+    fun isNotUseToUser() {
         this.isUse = false
     }
 

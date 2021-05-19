@@ -38,9 +38,9 @@ class LoginUserFilter(authenticationManager: AuthenticationManager, jwtUtils: Jw
 
         var requestBody = getRequestBodyToString(request!!)
 
-        var email = AppUtils.passerJSONObject(requestBody!! , "email") as String
+        var email = AppUtils.passerJSONObject(requestBody!!, "email") as String
 
-        var password  = AppUtils.passerJSONObject(requestBody!! , "password") as String
+        var password = AppUtils.passerJSONObject(requestBody!!, "password") as String
 
         val authRequest = UsernamePasswordAuthenticationToken(email, password)
 

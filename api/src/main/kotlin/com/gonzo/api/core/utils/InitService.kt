@@ -21,11 +21,11 @@ import java.util.*
  * Github : https://github.com/Gon-Zo
  */
 @Service
-class InitService (
-        private var userRepository: UserRepository ,
-        private var groupRepository: GroupRepository ,
-        private var menuRepository: MenuRepository ,
-        private var menuGroupRepository: MenuGroupRepository ,
+class InitService(
+        private var userRepository: UserRepository,
+        private var groupRepository: GroupRepository,
+        private var menuRepository: MenuRepository,
+        private var menuGroupRepository: MenuGroupRepository,
         private var userGroupRepository: UserGroupRepository
 ) {
 
@@ -64,9 +64,9 @@ class InitService (
 
             menuStrList.forEach { str -> menuList.add(menuRepository.saveAndFlush(Menu(str as String, true))) }
 
-            menuList.forEach{menu -> menuGroupRepository.save(MenuGroup(menu , group!!)) }
+            menuList.forEach { menu -> menuGroupRepository.save(MenuGroup(menu, group!!)) }
 
-            userGroupRepository.save(UserGroup(user!! , group!!))
+            userGroupRepository.save(UserGroup(user!!, group!!))
 
         }
 

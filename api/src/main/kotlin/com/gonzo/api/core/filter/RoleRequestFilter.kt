@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-class RoleRequestFilter : OncePerRequestFilter(){
+class RoleRequestFilter : OncePerRequestFilter() {
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
 
-        var  securityContextHolder = SecurityContextHolder.getContext()
+        var securityContextHolder = SecurityContextHolder.getContext()
 
         var authentication = securityContextHolder.authentication
 
-        var principal =  authentication.principal
+        var principal = authentication.principal
 
         doFilter(request, response, filterChain)
     }

@@ -7,18 +7,18 @@ import com.gonzo.api.domain.menu.Menu
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-data class MenuDto(var url : String, var isUse : Boolean  ){
+data class MenuDto(var url: String, var isUse: Boolean) {
 
-    fun toEntity() : Menu{
-        return Menu(this.url , this.isUse)
+    fun toEntity(): Menu {
+        return Menu(this.url, this.isUse)
     }
 
-    fun isUseToMenu (){
-       this.isUse = true
+    fun isUseToMenu() {
+        this.isUse = true
     }
 
-    fun isNotUseToMenu (){
-       this.isUse = false
+    fun isNotUseToMenu() {
+        this.isUse = false
     }
 
 }

@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-class AppUtils{
+class AppUtils {
 
-    companion object{
+    companion object {
 
-        fun passerJSONObject(str : String , key : String) : Any?{
-            var jsonObject  = JSONObject(str)
+        fun passerJSONObject(str: String, key: String): Any? {
+            var jsonObject = JSONObject(str)
             return jsonObject[key]
         }
 

@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
  * Github : https://github.com/Gon-Zo
  */
 @Configuration
-class BeanConfiguration{
+class BeanConfiguration {
 
 //    @Bean
 //    fun passwordEncoder(): PasswordEncoder? {

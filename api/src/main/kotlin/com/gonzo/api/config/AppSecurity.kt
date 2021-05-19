@@ -25,13 +25,13 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @EnableWebSecurity
 class AppSecurity(private val jwtRequestFilter: JwtRequestFilter,
-        private val authUserDetailsService: AuthUserDetailsService) : WebSecurityConfigurerAdapter() {
+                  private val authUserDetailsService: AuthUserDetailsService) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
 
         http!!.csrf().disable()
-                .addFilterBefore(CorsFilter() , BasicAuthenticationFilter::class.java)
-                .addFilterAfter(LoginUserFilter(authenticationManager() , JwtUtils()) , CorsFilter::class.java)
+                .addFilterBefore(CorsFilter(), BasicAuthenticationFilter::class.java)
+                .addFilterAfter(LoginUserFilter(authenticationManager(), JwtUtils()), CorsFilter::class.java)
                 .addFilterAfter(jwtRequestFilter, CorsFilter::class.java)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

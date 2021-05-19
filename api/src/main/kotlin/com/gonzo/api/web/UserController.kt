@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/api/user")
-class UserController (private val service : UserService){
+class UserController(private val service: UserService) {
 
     @GetMapping("")
-    fun showHello () : String{
-       return "Hello"
+    fun showHello(): String {
+        return "Hello"
     }
 
     @PostMapping("")
@@ -29,7 +29,7 @@ class UserController (private val service : UserService){
     }
 
     @PutMapping("/{seq}")
-    fun updateByUserInfo(@PathVariable seq : Long , @RequestBody dto : UserDto){
+    fun updateByUserInfo(@PathVariable seq: Long, @RequestBody dto: UserDto) {
         service.updateByUser(seq, dto)
     }
 

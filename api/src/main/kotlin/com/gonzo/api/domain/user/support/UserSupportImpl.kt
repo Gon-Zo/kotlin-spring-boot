@@ -16,19 +16,19 @@ import org.springframework.transaction.annotation.Transactional
  * Github : https://github.com/Gon-Zo
  */
 @Repository
-class UserSupportImpl(entityManager : EntityManager , jpaRepositoryFactory: JpaRepositoryFactory) : UserSupport , QuerydslRepositorySupport(User::class.java) {
+class UserSupportImpl(entityManager: EntityManager, jpaRepositoryFactory: JpaRepositoryFactory) : UserSupport, QuerydslRepositorySupport(User::class.java) {
 
     @Transactional
-    override fun update(seq: Long , dto : UserDto) {
+    override fun update(seq: Long, dto: UserDto) {
 
         var query = update(user)
 
-        if(isNotEmpty(dto.email)){
-            query.set( user.email , dto.email)
+        if (isNotEmpty(dto.email)) {
+            query.set(user.email, dto.email)
         }
 
-        if(isNotEmpty(dto.password)){
-           query.set(user.password  , dto.password)
+        if (isNotEmpty(dto.password)) {
+            query.set(user.password, dto.password)
         }
 
         query.execute();

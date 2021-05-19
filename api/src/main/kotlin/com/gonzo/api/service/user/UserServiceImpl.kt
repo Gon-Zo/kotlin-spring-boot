@@ -19,10 +19,10 @@ import org.springframework.transaction.annotation.Transactional
  * Github : https://github.com/Gon-Zo
  */
 @Service
-class UserServiceImpl( private val repository: UserRepository,
-                       private val support: UserSupport,
-                       private val groupRepository: GroupRepository ,
-                       private val userGroupRepository: UserGroupRepository
+class UserServiceImpl(private val repository: UserRepository,
+                      private val support: UserSupport,
+                      private val groupRepository: GroupRepository,
+                      private val userGroupRepository: UserGroupRepository
 ) : UserService {
 
     @Transactional
@@ -30,8 +30,8 @@ class UserServiceImpl( private val repository: UserRepository,
 
         var sameUser = repository.findByEmail(dto.email)
 
-        if (sameUser.isPresent){
-           throw AppException(ErrorCode.NOT_FOUND_USER)
+        if (sameUser.isPresent) {
+            throw AppException(ErrorCode.NOT_FOUND_USER)
         }
 
         dto.encodingPassword()
@@ -55,7 +55,7 @@ class UserServiceImpl( private val repository: UserRepository,
 
     @Transactional
     override fun updateByUser(seq: Long, dto: UserDto) {
-        var user : User = repository.getOne(seq)
+        var user: User = repository.getOne(seq)
         user.email = dto.email
         user.password = dto.password
         repository.save(user)

@@ -12,25 +12,25 @@ import javax.persistence.*
  * Github : https://github.com/Gon-Zo
  */
 @Entity
-@Table(name="APP_USER")
+@Table(name = "APP_USER")
 @DynamicUpdate
 class User : BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private var seq : Long ?= null
+    private var seq: Long? = null
 
     @Column(nullable = false)
-     var email : String ?= null
+    var email: String? = null
 
     @Column(nullable = false)
-     var password : String ?= null
+    var password: String? = null
 
-    @Column( name = "is_use" , nullable = false)
-    var isUse : Boolean
+    @Column(name = "is_use", nullable = false)
+    var isUse: Boolean
 
-    constructor( email : String  , password  : String , isUse : Boolean){
-        this.email =  email
+    constructor(email: String, password: String, isUse: Boolean) {
+        this.email = email
         this.password = password
         this.isUse = isUse
     }

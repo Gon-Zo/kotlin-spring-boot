@@ -8,5 +8,5 @@ import com.gonzo.api.web.dto.UserDto
  * Github : https://github.com/Gon-Zo
  */
 interface UserSupport {
-    fun update(seq : Long  , dto : UserDto)
+    fun update(seq: Long, dto: UserDto)
 }

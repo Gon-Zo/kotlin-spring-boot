@@ -15,19 +15,19 @@ import javax.persistence.PreUpdate
 abstract class BaseEntity {
 
     @Column(nullable = false)
-    protected var createdDate : LocalDate ?= null
-    get(){
-        return this.createdDate
-    }
+    protected var createdDate: LocalDate? = null
+        get() {
+            return this.createdDate
+        }
 
     @Column(nullable = false)
-    protected var updatedDate : LocalDate ?= null
-    get() {
-        return this.updatedDate
-    }
+    protected var updatedDate: LocalDate? = null
+        get() {
+            return this.updatedDate
+        }
 
     @PrePersist
-    protected fun getPersist(){
+    protected fun getPersist() {
         createdDate = LocalDate.now()
         updatedDate = LocalDate.now()
     }

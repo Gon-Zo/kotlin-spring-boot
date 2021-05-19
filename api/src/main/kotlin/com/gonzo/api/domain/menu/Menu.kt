@@ -12,20 +12,20 @@ import javax.persistence.*
 @Table(name = "APP_MENU")
 class Menu : BaseEntity {
 
-    constructor(url : String , isUse : Boolean){
+    constructor(url: String, isUse: Boolean) {
         this.url = url
         this.isUse = isUse
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var seq : Long ?= null
+    private var seq: Long? = null
 
     @Column(nullable = false)
-    private var url : String
+    private var url: String
 
     @Column(nullable = false)
-    private var isUse : Boolean ?= false
+    private var isUse: Boolean? = false
 
 
 }

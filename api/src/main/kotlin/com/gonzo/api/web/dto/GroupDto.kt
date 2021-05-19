@@ -7,7 +7,7 @@ import com.gonzo.api.domain.group.Group
  * Blog : https://zzz-oficial.tistory.com
  * Github : https://github.com/Gon-Zo
  */
-data class GroupDto(var title : String){
+data class GroupDto(var title: String) {
 
     fun toEntity(): Group {
         return Group(this.title)

@@ -10,6 +10,6 @@ import java.util.*
  * Github : https://github.com/Gon-Zo
  */
 @Repository
-interface UserRepository : JpaRepository<User , Long> {
-    fun findByEmail(email : String) : Optional<User>
+interface UserRepository : JpaRepository<User, Long> {
+    fun findByEmail(email: String): Optional<User>
 }

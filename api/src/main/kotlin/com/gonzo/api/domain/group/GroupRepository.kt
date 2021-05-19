@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository
  * Github : https://github.com/Gon-Zo
  */
 @Repository
-interface GroupRepository : JpaRepository<Group, Long>{
-    fun findByTitle(title: String) : Group
+interface GroupRepository : JpaRepository<Group, Long> {
+    fun findByTitle(title: String): Group
 }

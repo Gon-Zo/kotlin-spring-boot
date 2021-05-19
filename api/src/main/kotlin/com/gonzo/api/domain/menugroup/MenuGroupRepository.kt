@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository
  * Github : https://github.com/Gon-Zo
  */
 @Repository
-interface MenuGroupRepository : JpaRepository<MenuGroup , Long>{
+interface MenuGroupRepository : JpaRepository<MenuGroup, Long> {
 
 }

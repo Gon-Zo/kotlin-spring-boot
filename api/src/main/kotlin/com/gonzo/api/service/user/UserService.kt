@@ -11,10 +11,10 @@ interface UserService {
 
     fun createdByUser(dto: UserDto)
 
-    fun modifyByUser(seq : Long , dto: UserDto)
+    fun modifyByUser(seq: Long, dto: UserDto)
 
-    fun deleteByUser(seq : Long)
+    fun deleteByUser(seq: Long)
 
-    fun updateByUser(seq : Long  , dto: UserDto)
+    fun updateByUser(seq: Long, dto: UserDto)
 
 }

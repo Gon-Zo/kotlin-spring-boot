@@ -11,18 +11,18 @@ import javax.persistence.*
  * Github : https://github.com/Gon-Zo
  */
 @Entity
-@Table(name="APP_USER_GROUP")
+@Table(name = "APP_USER_GROUP")
 class UserGroup : BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val seq : Long ?= null
+    private val seq: Long? = null
 
     @OneToOne
-    private var user : User
+    private var user: User
 
     @OneToOne
-    private var group : Group
+    private var group: Group
 
     constructor(user: User, group: Group) {
         this.user = user

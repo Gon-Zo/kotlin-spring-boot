@@ -7,13 +7,13 @@ package com.gonzo.api.core.exception
  */
 class AppException : RuntimeException {
 
-    var errorCode : ErrorCode
+    var errorCode: ErrorCode
 
-    constructor(errorCode: ErrorCode){
+    constructor(errorCode: ErrorCode) {
         this.errorCode = errorCode
     }
 
-    constructor(message : String , errorCode: ErrorCode) : super(message){
+    constructor(message: String, errorCode: ErrorCode) : super(message) {
         this.errorCode = errorCode
     }
 

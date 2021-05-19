@@ -9,18 +9,18 @@ import javax.persistence.*
  * Github : https://github.com/Gon-Zo
  */
 @Entity
-@Table(name="APP_GROUP")
+@Table(name = "APP_GROUP")
 class Group : BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var seq: Long ?= null
+    private var seq: Long? = null
 
     @Column(nullable = false)
     private var title: String
 
-    constructor(title : String){
-       this.title = title
+    constructor(title: String) {
+        this.title = title
     }
 
 }

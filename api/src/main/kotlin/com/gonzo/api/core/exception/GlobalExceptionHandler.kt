@@ -18,12 +18,12 @@ class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(Exception::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    fun handlerException(exception: java.lang.Exception) : ErrorDto{
+    fun handlerException(exception: java.lang.Exception): ErrorDto {
 
         logger!!.error(exception.message)
         logger!!.error(ExceptionUtils.getStackTrace(exception))
 
-        return ErrorDto(ErrorCode.SYSTEM_ERROR.errorCode ,
+        return ErrorDto(ErrorCode.SYSTEM_ERROR.errorCode,
                 ErrorCode.SYSTEM_ERROR.message,
                 ExceptionUtils.getStackTrace(exception))
 
@@ -32,7 +32,7 @@ class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(AppException::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    fun handlerException(exception: AppException) : ErrorDto{
+    fun handlerException(exception: AppException): ErrorDto {
 
         var errorCode = exception.errorCode
 
@@ -40,7 +40,7 @@ class GlobalExceptionHandler {
 
         logger!!.error(ExceptionUtils.getStackTrace(exception))
 
-        return ErrorDto( errorCode.errorCode ,
+        return ErrorDto(errorCode.errorCode,
                 errorCode.message,
                 ExceptionUtils.getStackTrace(exception))
 

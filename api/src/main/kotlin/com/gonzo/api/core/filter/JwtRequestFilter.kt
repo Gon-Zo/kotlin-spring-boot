@@ -24,15 +24,15 @@ import javax.servlet.http.HttpServletResponse
  */
 //todo : 결과값 변경
 @Component
-class JwtRequestFilter (detailsService: AuthUserDetailsService , jwtUtils: JwtUtils) : OncePerRequestFilter() {
+class JwtRequestFilter(detailsService: AuthUserDetailsService, jwtUtils: JwtUtils) : OncePerRequestFilter() {
 
-    private var detailsService : AuthUserDetailsService ?= null
+    private var detailsService: AuthUserDetailsService? = null
 
-    private var jwtUtils : JwtUtils ?= null
+    private var jwtUtils: JwtUtils? = null
 
     init {
         this.detailsService = detailsService
-        this.jwtUtils =jwtUtils
+        this.jwtUtils = jwtUtils
     }
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
@@ -86,7 +86,7 @@ class JwtRequestFilter (detailsService: AuthUserDetailsService , jwtUtils: JwtUt
 
     }
 
-    fun isNotValidateToken(headerAuthorization  : String , authUser : UserDetails) : Boolean {
+    fun isNotValidateToken(headerAuthorization: String, authUser: UserDetails): Boolean {
         return !jwtUtils!!.validateToken(headerAuthorization, authUser)!!
     }
 

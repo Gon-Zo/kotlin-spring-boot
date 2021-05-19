@@ -15,22 +15,22 @@ import com.gonzo.api.core.auth.AuthUserDetails as AuthUserDetails1
  * Github : https://github.com/Gon-Zo
  */
 @Service
-class AuthUserDetailsService(private var userRepository : UserRepository) : UserDetailsService{
+class AuthUserDetailsService(private var userRepository: UserRepository) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
 
         var user = userRepository
                 .findByEmail(username)
-                .orElseThrow{AppException(ErrorCode.NOT_FOUND_USER)}
+                .orElseThrow { AppException(ErrorCode.NOT_FOUND_USER) }
 
-        if(isNotIsUse(user.isUse)) {
+        if (isNotIsUse(user.isUse)) {
             throw AppException(ErrorCode.NOT_USE_USER)
         }
 
-        return AuthUserDetails1(user.email!! , user.password!!)
+        return AuthUserDetails1(user.email!!, user.password!!)
     }
 
-    private fun isNotIsUse( isUse : Boolean) : Boolean{
+    private fun isNotIsUse(isUse: Boolean): Boolean {
         return !isUse
     }
 
