@@ -21,7 +21,7 @@ class UserSupportImpl(entityManager: EntityManager, jpaRepositoryFactory: JpaRep
     @Transactional
     override fun update(seq: Long, dto: UserDto) {
 
-        var query = update(user)
+        val query = update(user)
 
         if (isNotEmpty(dto.email)) {
             query.set(user.email, dto.email)
